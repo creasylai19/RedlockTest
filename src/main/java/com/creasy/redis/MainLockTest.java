@@ -54,6 +54,7 @@ public class MainLockTest {
                     lock.unlock();
                 }
             }
+            TimeUnit.SECONDS.sleep(new Random().nextInt(10));
         }
     }
 
