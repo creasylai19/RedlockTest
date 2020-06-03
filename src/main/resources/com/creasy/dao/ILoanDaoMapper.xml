@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.creasy.dao.ILoanDao">
+    <select id="queryLoanById" resultType="com.creasy.pojo.Loan" parameterType="int">
+        select * from loan where id = #{id}
+    </select>
+
+    <update id="updateLoan" parameterType="com.creasy.pojo.Loan">
+        update loan set deal_instance = #{deal_instance}, deal_count = deal_count + 1 where id = #{id}
+    </update>
+
+    <select id="queryLoanWithoutDeal" resultType="com.creasy.pojo.Loan">
+        select * from loan where id = (select max(id) from loan where deal_count = 0)
+    </select>
+</mapper>
